@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\VisualStudio2019Preview\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\EmptyInterface.cs" />
+    <Compile Remove="Services\ICourseDataStore.cs" />
+    <Compile Remove="Services\IDataStore.cs" />
+    <Compile Remove="Services\MockDataStore.cs" />
+    <Compile Remove="Views\NewCoursePage.cs" />
+    <Compile Remove="Views\NewTermPage %28copy%29.xaml.cs" />
+    <Compile Remove="AppShell.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Assessment\EditAssessmentPage.xaml.cs">
+      <DependentUpon>EditAssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Assessment\AssessmentsDetailPage.xaml.cs">
+      <DependentUpon>AssessmentsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Term\NewTermPage.xaml.cs">
+      <DependentUpon>NewTermPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Term\TermDetailPage.xaml.cs">
+      <DependentUpon>TermDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Term\EditTermPage.xaml.cs">
+      <DependentUpon>EditTermPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\TermDetailPage %28copy%29.xaml.cs">
+      <DependentUpon>CourseDetailPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Course\CourseDetailPage.xaml.cs">
+      <DependentUpon>CourseDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MyPage.xaml.cs">
+      <DependentUpon>EditCoursePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Course\EditCoursePage.xaml.cs">
+      <DependentUpon>EditCoursePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="AppShell.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Assessment\EditAssessmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Assessment\AssessmentsDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Assessment\NewAssessmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Note\EditNotePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
