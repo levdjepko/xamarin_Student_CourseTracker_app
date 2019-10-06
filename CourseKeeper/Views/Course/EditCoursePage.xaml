@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CourseKeeper.Views.EditCoursePage"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             Title="Edit Course">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelEditCommand}" />
+        <ToolbarItem Text="Save"
+                     Command="{Binding SaveCourseCommand}"
+                      />
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<ScrollView>
+        <StackLayout Spacing="10" Padding="10">
+            <Label Text="Course Name"   />
+                <Entry Text="{Binding Name}"   />
+            <Label Text="Instructor Name"  />
+                <Entry Text="{Binding InstructorName}"   />
+            <Label Text="Instructor Phone"   />
+                <Entry Text="{Binding InstructorPhone}"   />
+            <Label Text="Instructor Email"   />
+                <Entry Text="{Binding InstructorEmail}"   />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Status"   Grid.Row="0" Grid.Column="0"/>
+                    <Picker Title="Set Enrollment Status" ItemsSource="{Binding StatusList}" SelectedItem="{Binding CurrentStatus}" Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                <Label Text="Send Notifications Before Course End?"/>
+                <Switch x:Name="CourseNotificationToggle" IsToggled="{Binding Notifications}" />
+                <Label Text="Start Date" />
+                <DatePicker 
+                            Date="{Binding StartDate}"
+                            Format="MM-dd-yyyy"
+                            MaximumDate="{Binding EndDate}" />
+                <Label Text="End Date" />
+                <DatePicker 
+                            Date="{Binding EndDate}"
+                            Format="MM-dd-yyyy"
+                            MinimumDate="{Binding StartDate}" />
+            </StackLayout>
+			</ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+

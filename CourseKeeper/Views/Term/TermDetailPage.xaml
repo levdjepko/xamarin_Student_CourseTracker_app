@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	mc:Ignorable="d" 
+	x:Class="CourseKeeper.Views.TermDetailPage" 
+	Title="Term Detail">
+	<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditTermCommand}" />
+        <ToolbarItem Text="Delete"
+                     Command="{Binding DeleteTermCommand}" />
+    </ContentPage.ToolbarItems>
+	
+	<StackLayout>
+        <ScrollView>
+            <StackLayout VerticalOptions="Start" Padding="15">
+                <Label Text="{Binding TermName}" XAlign="Center" />
+                <Label Text="Courses this term:" IsVisible="{Binding ShowCourseLabel}" />
+                <ListView 
+					x:Name="CourseListView" 
+					ItemsSource="{Binding CourseList}" 
+					HasUnevenRows="true"
+					
+					ItemSelected="OnItemSelected"
+					RefreshCommand="{Binding LoadItemsCommand}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding Name}" LineBreakMode="NoWrap"   />
+                                    </StackLayout>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        
+        <StackLayout VerticalOptions="FillAndExpand" Padding="15">
+            <StackLayout 
+                         IsVisible="{Binding AddButtonEnabled}">
+                <Button Text="Add Course" Command="{Binding AddCourseCommand}" />
+            </StackLayout>
+            <Label XAlign="Center" Text="{Binding StartDate, StringFormat='Start Date: {0}'}" />
+            <Label XAlign="Center" Text="{Binding EndDate, StringFormat='Anticipated End Date: {0}'}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

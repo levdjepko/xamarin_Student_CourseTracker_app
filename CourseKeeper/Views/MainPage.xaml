@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CourseKeeper.Views.MainPage"
+             Title="{Binding Title}"
+             x:Name="BrowseTermsPage">
+
+    	<StackLayout>
+    <ScrollView>
+    <StackLayout>
+        <ListView
+                x:Name="ItemsListView"
+                ItemsSource="{Binding Terms}"
+                
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView>
+                            <StackLayout Padding="20">
+                                <Label Text="{Binding Name}" 
+                                LineBreakMode="NoWrap" 
+                                FontSize="Medium" />
+                            </StackLayout>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout>
+		</ScrollView>
+		<Button
+            Text="Add Term" 
+            Command="{Binding AddTermCommand}"  />
+	</StackLayout>
+</ContentPage>

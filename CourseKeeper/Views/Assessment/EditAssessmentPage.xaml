@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CourseKeeper.Views.EditAssessmentPage"
+             Title="{Binding AssessmentType, StringFormat='{0} Assessment'}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete"
+                     Command="{Binding DeleteAssessmentCommand}" />
+        <ToolbarItem Text="Save"
+                     Command="{Binding SaveAssessmentCommand}" />
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="Assessment Name" />
+                <Entry Text="{Binding Name}" />
+                <Label Text="Start Date" />
+                <DatePicker VerticalOptions="Fill"
+                            Date="{Binding StartDate}"
+                            Format="MM-dd-yyyy"
+                            MaximumDate="{Binding EndDate}" />
+                <Label Text="Due Date" />
+                <DatePicker VerticalOptions="Fill"
+                            Date="{Binding EndDate}"
+                            Format="MM-dd-yyyy"
+                            MinimumDate="{Binding StartDate}" />
+                <Label Text="Send Notifications Before Due Date?" />
+                <Switch IsToggled="{Binding Notifications}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

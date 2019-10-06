@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CourseKeeper.Views.CourseDetailPage"
+             Title="Course Detail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit"
+                     Command="{Binding EditCourseCommand}" />
+        <ToolbarItem Text="Delete"
+                     Command="{Binding DeleteCourseCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0"
+                         Padding="10">
+                <Label Text="{Binding Name, StringFormat='Course Name: {0}'}"
+                       
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalOptions="Start" />
+                <Label Text="Instructor:"
+                       
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                <Frame 
+                       CornerRadius="5"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2">
+                    <StackLayout>
+                        <Label Text="{Binding InstructorName}"
+                               />
+                        <Label Text="{Binding InstructorPhone}"
+                               />
+                        <Label Text="{Binding InstructorEmail}"
+                                />
+                    </StackLayout>
+                </Frame>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Status"
+                           
+                           Grid.Row="0"
+                           Grid.Column="0" />
+                    <Label Text="{Binding CurrentStatus}"
+                           
+                           Grid.Row="0"
+                           Grid.Column="1" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="99" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Manage Notes"
+                            Command="{Binding EditNotesCommand}"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2" />
+                    <Label Text="Send Notifications Before Course End?"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="Start" />
+                    <Switch x:Name="CourseNotificationToggle"
+                            IsToggled="{Binding Notifications}"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            IsEnabled="False"/>
+                </Grid>
+                <Button Text="Manage Assessments"
+                        Command="{Binding ManageAssessmentsCommand}" />
+                <Label Text="Start Date" />
+                <DatePicker Date="{Binding StartDate}" IsEnabled="False">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                </DatePicker>
+                <Label Text="End Date" />
+                <DatePicker Date="{Binding EndDate}" IsEnabled="False">
+                    <DatePicker.Format>MM-dd-yyyy</DatePicker.Format>
+                </DatePicker>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

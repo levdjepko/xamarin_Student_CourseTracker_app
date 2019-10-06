@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:sys1="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="CourseKeeper.Views.EditTermPage"
+             Title="{Binding TermName}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel"
+                     Command="{Binding CancelCommand}" />
+        <ToolbarItem Text="Save"
+                     Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Spacing="20"
+                     Padding="15">
+            <Label Text="Term Name:"
+                    />
+            <Entry Text="{Binding TermName}"
+                   d:Text=""
+                    />
+            <Label Text="Start Date" />
+            <DatePicker 
+                        Date="{Binding StartDate}"
+                        Format="MM-dd-yyyy"
+                        MaximumDate="{Binding EndDate}" />
+            <Label Text="End Date" />
+            <DatePicker 
+                        Date="{Binding EndDate}"
+                        Format="MM-dd-yyyy"
+                        MinimumDate="{Binding StartDate}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
